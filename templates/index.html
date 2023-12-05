@@ -1,0 +1,392 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edu Web</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="icon" href="img/logo.png" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+    <!-- navbar -->
+
+  
+    <nav class="navbar navbar-expand-lg bg-light ">
+    
+      <a class="navbar-brand ml-md-5" href="#"><img class="" src="img/logo.png" alt=""></a>
+
+      <button class="navbar-toggler bg-secondary text-white"  type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon text-white"></span>
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+        <div class="navbar-nav m-auto">
+          <a class="nav-link  hover active" href="{% url "home" %}">HOME <span class="sr-only">(current)</span></a>
+          <a class="nav-link hover" href="#">ABOUT</a>
+          <a class="nav-link hover" href="#">BLOG</a>
+          <a class="nav-link  ">CONTACT US</a>
+          <div class="dropdown">
+            <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+              Departments
+            </button>
+            <div class="dropdown-menu">
+              
+              {% for department in departments %}
+              <a class="dropdown-item" href="{% url 'courseDetailsurs' department.id %}">{{ department.name }}</la>
+               {% endfor %}
+              
+              <!-- <a >Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a> -->
+            </div>
+          </div>
+            <div class="nav-link logos" >
+          <a class="nav-link pl-5 " href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="nav-link " href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a class="nav-link " href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a class="nav-link " href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a class="nav-link pl-5" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+
+          
+          </div>
+        </div>
+
+        <div class="login-register">
+
+          	<ul class="d-flex flex-row align-items-start justify-content-start">
+									{% if user.is_authenticated %}
+									<li >User{{user.username}}</li>&nbsp;
+									<li><a href="credentials/logout" class="btn btn-outline-success">Logout</a>&nbsp;</li>
+									{% else %}
+									
+									<li><a href="credentials/register" class="btn btn-outline-success">Register </a>&nbsp;</li>
+									<li><a href="credentials/login" class="btn btn-outline-primary">Login</a>&nbsp;</li>
+									{% endif %}
+								</ul>
+          
+      </div>
+      
+    </div>  
+    </nav>
+    
+    {% block content %}
+    <!-- crasoul -->
+
+    
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active bg-success" style="background-image: url('{% static 'images/banner-bg.png' %}');" >
+          <div class="row " >
+            <div class="col-md-12 col-sm-12 col-lg-6 carouseldiv" >
+              <h2 class="text-white" style="font-size: 50px;">Casinal  Educational <br> Coaching <br></h2><br>
+              <h3 class="text-white">Build the skills of the future, today</h3>
+              <button type="button" class="btn btn-warning rounded-pill pt-3 pb-3 pr-5 pl-5 mt-4">About Us</button>
+              <button type="button" class="btn btn-dark rounded-pill pt-3 pb-3 pr-5 pl-5 mt-4">Get A Quote</button>
+            </div>
+            <div class="col-md-6 col-sm-12 col-lg-6 " style=" padding-top: 35px;">
+              <img src="{% static 'images/img-1.png' %}"  alt=""  height="400px">
+            </div>
+
+          </div>
+        </div>
+
+          
+        <div class="carousel-item  bg-success" style="background-image: url('{% static 'images/banner-bg.png' %}'); " >
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-6   carouseldiv" >
+              <h2 class="text-white" style="font-size: 50px;  font-family: 'Poppins', sans-serif;">Casinal   Educational <br> Coaching</h2><br>
+              <p class="text-white" >Build the skills of the future, today</p>
+              <button type="button" class="btn btn-warning rounded-pill pt-3 pb-3 pr-5 pl-5 mt-4">About Us</button>
+              <button type="button" class="btn btn-dark rounded-pill pt-3 pb-3 pr-5 pl-5 mt-4">Get A Quote</button>
+            </div>
+            <div class="col-md-6" style=" padding-top: 35px;">
+              <img src="{% static 'images/img-1.png' %}" alt=""  height="400px">
+            </div>
+          </div>
+        </div>
+
+      </div>
+        
+
+          
+        
+          
+     
+      <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
+        <span class="" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-left-short text-dark" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+        </svg></span>
+        <span class="sr-only">Previous</span>
+      </button>
+      <button class="carousel-control-next " type="button" data-target="#carouselExampleCaptions" data-slide="next">
+        <span class=" " aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-right-short text-dark" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+          </svg>
+         </span>
+        <span class="visually-hidden"></span>
+      </button>
+    </div>
+
+    <!-- our course -->
+
+    <div class="container">
+       <div class="w-100 h-25 pt-4	 d-flex  justify-content-center "><h2 class="text-center services_taital w-100 py-1"><span style="color:rgb(255, 208, 18) ;">Our </span>Courses</h2><br><br>
+        
+      </div>
+      <div class="w-100 pb-5	 d-flex  justify-content-center">
+      <button  style="width:50px ;height: 18px; background-color:rgb(255, 208, 18) ;border: none;border-radius: 9px;"></button>
+      </div>
+      <div class="row  justify-content-between">
+
+        <div class="col-xl-6  col-lg-6 col-md-12 col-sm-12 pt-5  " style="height: auto;">
+          <div class="header bg-art" style="background-image:url('{% static 'images/science.jpg' %}'); width: 100%; height: 300px; background-size: cover;position: relative;"  >
+          <!-- <img class="image" src="./img/art _ design.jpg" alt="" width="100%" height="250px"> -->
+          
+          <div class="middle">
+            <div class="text">Art & Design</div>
+          </div>
+        </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 pt-5  " >
+          <div class="header" style="background-image:url('{% static 'images/science.jpg' %}'); width: 100%; height: 300px; background-size: cover;position: relative;"  >
+          <!-- <img class="image" src="science.jpg" alt="" width="100%" height="250px"> -->
+          
+          <div class="middle">
+            <div class="text">Science</div>
+          </div>
+        </div>
+        </div>
+        
+     
+
+      
+
+        <div class="col-xl-6  col-lg-6  col-md-12 col-sm-12 pt-5 ">
+          <div class="header" style="background-image:url('{% static 'images/business_study.jpg' %}'); width: 100%; height: 300px; background-size: cover;position: relative;"  >
+          
+          <div class="middle">
+            <div class="text">Business Study</div>
+          </div>
+        </div>
+        </div>
+
+      
+
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 pt-5 " >
+          <div class="header" style="background-image: url('{% static 'images/businessstudents.jpg' %}'); width: 100%; height: 300px; background-size: cover;position: relative;">
+            <div class="middle">
+              <div class="text">English Study</div>
+            </div>
+          </div>
+          <!-- <img class="image" src="img/mba.jpg" alt="" width="100%" height="250px"> -->
+          
+        </div>
+        
+      
+    </div>
+   </div>
+    <!-- our about -->
+  <div class="service_section layout_padding">
+    <div class="container ">
+      <div class="row h-25 pt-5	 d-flex  justify-content-center ">
+        <div class="col-md-12 col-lg-12 col-sm-12" >
+          <h2 class="text-center services_taital w-100 py-1">Our About</h2>
+        </div>
+        
+          <div class="col-md-12 col-xl-12 d-flex  justify-content-center">
+            <p>do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+          </div>
+      </div>
+      <div class="row pt-5">
+        <div class="col-md-6 col-sm-12 col-lg-6" style="border: 1px solid black;">
+          <div class=" pt-5 mt-5 ml-2">
+          <p style="color:rgb(163, 163, 163) ;">01 Jan 2045</p>
+          <h4>Make it Simple</h4>
+          <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p><br>
+          <p  style="color:rgb(163, 163, 163) ;">Post By : Casinal</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12 col-lg-6 " >
+          <img src="{% static 'images/writing.png ' %}" alt="" width="100%" height="auto">
+          <button  class="rounded-circle  p-4 imgbutton"><i class="fa-solid fa-plus"></i></button>
+        </div>
+      </div>
+      
+    </div>
+  </div>   
+    <!-- our blog -->
+  <div class="blog_section layout_ padding">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-12 col-xl-12 col-sm-12 pt-5 display-2">
+          <h2 class="text-center w-100  ">Our Blog</h2>
+        </div>
+        <div class="col-md-12 d-flex   justify-content-center">
+          <p >do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+        </div>
+
+      </div>
+    <div class="blog_section_2">
+      <div class="row pt-4 ">
+        <div class="col-md-6 col-lg-6 col-sm-12 " >
+            <img class="img-fluid" src="{% static 'images/blog section 2.png' %}" alt="" >
+
+        </div>
+        <div class="col-md-6 col-lg-6 col-sm-12">
+          <h4 class="classes_text">Best Classes and Study</h4>
+          <p class="ipsum_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
+        </div>
+      </div>
+     </div> 
+          <div class="readmore">
+            <a class="btn btn-warning text-white rounded-pill pt-3 pb-3 pr-5 pl-5 mt-4" href="#">Read More</a>
+          </div>   
+
+
+    </div>
+  </div>  
+
+  <!-- carousel2 -->
+
+  
+  <div id="carouselExampleControlsNoTouching" class="carousel slide my-5" data-touch="false" data-interval="false">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="d-block w-100  d-flex justify-content-center" style="height: 500px; background-color: black;">
+          <div class="row d-flex justify-content-center  " style="width: 50%;">
+            <div class="col-md-12 col-lg-12 col-sm-12 mt-5 pt-2">
+                <h1 class=" client_taital">Testimonial</h1>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-12 mt-5 d-flex justify-content-end">
+                <img class="img-fluid mr-3 pb-5" src= "{% static 'images/client-img.png' %}" alt="">
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-12 mt-5">
+              <div>
+                 <h3 class="text-white">Jony Deno</h3>
+                 <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus dolorem laboriosam voluptatem temporibus, quibusdam nesciunt! Maxime iure consectetur pariatur esse corrupti non nihil necessitatibus ipsam minima commodi? Reprehenderit, vero aliquam.</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="carousel-item">
+          <div class="d-block w-100 " style="height: 400px; background-color: black;"></div>
+        </div>
+       
+      </div>
+      <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
+        <span class="" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-left-short text-dark" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+        </svg></span>
+        <span class="sr-only">Previous</span>
+      </button>
+      <button class="carousel-control-next " type="button" data-target="#carouselExampleCaptions" data-slide="next">
+        <span class=" " aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-right-short text-dark" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+          </svg>
+         </span>
+        <span class="visually-hidden"></span>
+      </button>
+    </div>
+    
+
+    <!-- consultin -->+
+
+    <div class="container pt-5">
+      <div class="row pt-3">
+        <div class="col-md-8 col-lg-8 col-sm-12 pt-2" >
+          <h2 style="font-size:50px ; font-family: 'Poppins', sans-serif;">Get</h2>
+          <h2 style="font-size:50px ; font-family: 'Poppins', sans-serif;">Your free consulting</h2>
+          
+
+        </div>
+        <div class="col-md-4 col-lg-8 col-sm-12">
+          <button  class="btn btn-dark text-white rounded-pill pt-3 pb-3 pr-5 pl-5 mt-4">Get a Quote</button>
+        </div>
+        <div class="col-md-12 pt-4">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At architecto quis voluptas reiciendis debitis doloribus. Repellendus nulla illo facilis voluptatem nostrum eveniet commodi cum cupiditate, quis, deserunt ipsa sunt quae?
+
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row pt-5">
+      <div class="col-md-6 col-lg-6 col-sm-12"  >
+          <img class="study_img img-fluid w-100" src="{% static 'images/study.png' %}" alt="">
+          <div class="bestedudiv">
+          <h1 style="font-size: 60px;" class="bestedu">Best <br>Educations <br> In World <br> Here</h1>
+          </div>
+      </div>
+      <div class="col-md-6 col-lg-6 col-sm-12">
+        <img class="map_img  img-fluid" src= "{% static 'images/map-img.png' %}" alt="" >
+      </div>
+    </div>
+
+    {% endblock content %}
+    <!-- footer -->
+
+    <footer class="bg-dark">
+      <div class="container pt-5">
+        <div class="row ">
+          <div class="col-md-4 col-lg-4 col-sm-12   pb-5">
+              <button class="btn text-white w-100 rounded-pill btn-warning pt-3 pb-3 pr-5 pl-5 mt-4 ">SUBSCRIBE</button>
+          </div>
+          <div class="col-md-8 col-lg-8 col-sm-12    pb-5">
+              <input class="text-white w-100 rounded-pill  pt-3 pb-3 pr-5 pl-5 mt-4" type="email" name="email" id="" placeholder="Enter Your Email">
+          </div>
+        <div class="row mt-5 " style="padding-bottom: 200px;" >
+          <div class="col-md-3 col-lg-3 col-sm-12    footer1 " style="height: 300px; ">
+            <p  class="text-white mt-5 " style="font-size: 20px; margin-top: 150px;"><i class="fa-sharp fa-solid fa-square-phone"></i>Call Now +91 9544833915</p>
+            <p class="text-white" style="font-size: 20px;"><i class="fa-sharp fa-solid fa-square-envelope "></i>mail@domain.com</p>
+          </div>
+          <div class="col-md-3 col-lg-3 col-sm-12    footer2" style="height: 300px; ">
+            <h3 class="text-white" style="font-size: 30px;">Information</h3>
+            <p class="text-white" style="font-size: 25px;">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration</p>
+          </div>
+          <div class="col-md-3 col-lg-3 col-sm-12    footer3 d-block" style="height: 300px; ">
+            <h3 class="text-white">Helpful Links</h3>
+          <ul>
+           <li > <a class="text-decoration-none text-white footeratag  pt-5" href="">Home</a> </li>
+           <li > <a class="text-decoration-none text-white footeratag  pt-5" href="">About</a> </li>
+           <li > <a class="text-decoration-none text-white footeratag  pt-5" href="">Service</a> </li>
+           <li > <a class="text-decoration-none text-white footeratag  pt-5" href="">Blog</a> </li>
+           <li > <a class="text-decoration-none text-white  footeratag  pt-5" href="">News</a> </li>
+          </ul>
+          </div>
+          <div class="col-md-3 col-lg-3 col-sm-12    footer4" style="height: 300px; ">
+            <h2 class="text-white " style="margin-top: 150px;">CASINAL</h2>
+          </div>
+        </div>
+
+        </div>
+      </div>
+
+    </footer>
+
+
+  
+
+  
+
+</body>    
+       
+</html>

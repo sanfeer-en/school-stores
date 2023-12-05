@@ -1,0 +1,77 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+
+<div class=" d-flex w-100 justify-content-center align-items-center " style="height:auto;">
+
+    {% if message %}
+      <div  class="alert alert-success" role="alert">
+        {{ message }}
+      </div>
+    {% endif %}
+    <div class="w-50 p-5" > <h1>Order Form</h1>
+
+    <form method="post" action="" class="border p-3">
+        {% csrf_token %}
+
+        <label for="name">Name:</label>
+        <input class="form-control" type="text" id="name" name="name" required>
+
+        <label for="dob">Date of Birth:</label>
+        <input   class="form-control"  type="date" id="dob" name="dob" required>
+
+        <label for="age">Age:</label>
+        <input  class="form-control"  type="number" id="age" name="age" required>
+
+        <label for="gender">Gender:</label>
+        <select  class="form-control"  id="gender" name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <!-- Add more options if needed -->
+        </select>
+
+        <label for="phone_number">Phone Number:</label>
+        <input  class="form-control"  type="text" id="phone_number" name="phone_number" required>
+
+        <label for="mail_id">Email:</label>
+        <input   class="form-control" type="email" id="mail_id" name="mail_id" required>
+
+        <label for="address">Address:</label>
+        <textarea  class="form-control"  id="address" name="address" rows="4" required></textarea>
+        
+        <label for="department">Department:</label>
+      
+
+
+        <select  class="form-control"  id="department" name="department" required>
+            {% for departarment  in departments %}
+            <option  value="{{departarment.id}}">{{departarment.name}}</option>
+
+            </option>
+            {% endfor %}
+        </select>
+
+        <label for="course">Course:</label>
+
+        <select  class="form-control"  id="department" name="course" required>
+            {% for corse  in course %}
+            <option  value="{{corse.id}}">{{corse.name}}</option>
+
+            </option>
+            {% endfor %}
+        </select>
+        
+
+        <label for="purpose">Purpose:</label>
+        <input  class="form-control"  type="text" id="purpose" name="purpose" required>
+
+        <label for="materials_provide">Materials Provide:</label>
+        <textarea  class="form-control"  id="materials_provide" name="materials_provide" rows="4" required></textarea>
+
+        <button type="submit" class="btn btn-primary m-2">Submit&nbsp;</button>
+    </form>
+</div>
+</div>
+
+{% endblock content %}
