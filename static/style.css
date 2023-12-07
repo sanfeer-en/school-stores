@@ -289,6 +289,31 @@ li{
   list-style: none;
   margin-top: 30px;
 }
+.formstyle {
+ border-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);;
+}
+.formstyle .form-control:hover {
+  border-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);; /* Change the border color on hover */
+  
+}
+
+
+.formstyle .custom-select:hover {
+  border-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);; /* Change the border color on hover */
+  /* background-color: #e1e1e1; Change the background color on hover */
+}
+
+/* Add hover effect to the form-checkbox within the formstyle class */
+.formstyle .form-checkbox:hover {
+ 
+  border-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);; /* Change the border color on hover */
+  /* background-color: #e6f7ff; */
+}
+
+
+#formcss {
+  background-color: #000;
+}
 
 @media only screen and (max-width: 990px) {
   .carouseldiv {

@@ -1,6 +1,10 @@
 {% extends 'index.html' %}
+{% load static %}
+
 
 {% block content %}
+
+
 
 
 <div class=" d-flex w-100 justify-content-center align-items-center " style="height:auto;">
@@ -10,68 +14,79 @@
         {{ message }}
       </div>
     {% endif %}
-    <div class="w-50 p-5" > <h1>Order Form</h1>
+    <div class="w-50 p-5 " > <h1 class="text-center">Students Form</h1>
 
-    <form method="post" action="" class="border p-3">
+    <form method="post" action="" class="border formstyle p-3" >
         {% csrf_token %}
 
         <label for="name">Name:</label>
-        <input class="form-control" type="text" id="name" name="name" required>
+        {{order_form.name}}
 
         <label for="dob">Date of Birth:</label>
-        <input   class="form-control"  type="date" id="dob" name="dob" required>
+        {{order_form.dob}}
 
         <label for="age">Age:</label>
-        <input  class="form-control"  type="number" id="age" name="age" required>
+        {{order_form.age}}
 
         <label for="gender">Gender:</label>
-        <select  class="form-control"  id="gender" name="gender" required>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <!-- Add more options if needed -->
-        </select>
+        {{order_form.gender}}
 
         <label for="phone_number">Phone Number:</label>
-        <input  class="form-control"  type="text" id="phone_number" name="phone_number" required>
+        {{order_form.phone_number}}
 
-        <label for="mail_id">Email:</label>
-        <input   class="form-control" type="email" id="mail_id" name="mail_id" required>
+        <label for="mail">Email:</label>
+        {{order_form.mail_id}}
 
         <label for="address">Address:</label>
-        <textarea  class="form-control"  id="address" name="address" rows="4" required></textarea>
-        
-        <label for="department">Department:</label>
-      
+        {{order_form.address}}
 
-
-        <select  class="form-control"  id="department" name="department" required>
-            {% for departarment  in departments %}
-            <option  value="{{departarment.id}}">{{departarment.name}}</option>
-
-            </option>
-            {% endfor %}
-        </select>
+        <label for="depart">Department:</label>
+        {{order_form.department}}
 
         <label for="course">Course:</label>
-
-        <select  class="form-control"  id="department" name="course" required>
-            {% for corse  in course %}
-            <option  value="{{corse.id}}">{{corse.name}}</option>
-
-            </option>
-            {% endfor %}
-        </select>
-        
+        {{order_form.course}}
 
         <label for="purpose">Purpose:</label>
-        <input  class="form-control"  type="text" id="purpose" name="purpose" required>
+        {{order_form.purpose}}
 
-        <label for="materials_provide">Materials Provide:</label>
-        <textarea  class="form-control"  id="materials_provide" name="materials_provide" rows="4" required></textarea>
-
+        <label for="material_provide">Materials Provide:</label>
+        {{order_form.materials_provide}}
+        
         <button type="submit" class="btn btn-primary m-2">Submit&nbsp;</button>
     </form>
 </div>
 </div>
+
+
+<!-- Add this to your HTML template -->
+<script>
+    $(document).ready(function () {
+        $('#depart').change(function () {
+            var departmentId = $(this).val();
+            if (departmentId) {
+                $.ajax({
+                    type: 'GET',
+                    url: `/get_courses/${departmentId}/`,
+                    success: function (data) {
+                        var courseSelect = $('#course');
+                        courseSelect.empty();
+                        $.each(data, function (index, course) {
+                            courseSelect.append('<option value="' + course.id + '">' + course.name + '</option>');
+                        });
+                    }
+                });
+            } else {
+                // Reset the course dropdown if no department is selected
+                $('#course').empty();
+                $('#course').append('<option value="" selected disabled>Select a course</option>');
+            }
+        });
+
+        // Trigger change event on page load to initialize the course dropdown
+        $('#depart').change();
+    });
+</script>
+
+
 
 {% endblock content %}

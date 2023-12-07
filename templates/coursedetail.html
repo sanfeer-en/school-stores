@@ -3,19 +3,8 @@
 {% block content %}
 
 
-<div class=" d-flex w-100 justify-content-center align-items-center" style="height: 100vh;">
-{% for crs  in courses %}
-
-<div class="card " style="width: 18rem;height: 350px;">
-    {% comment %} <img src="..." class="card-img-top" alt="..."> {% endcomment %}
-    <div class="card-body">
-      <h5 class="card-title">{{crs.name}}</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="{% url "courseform" %}" class="btn btn-primary">Order Form</a>
-    </div>
-  </div>
-
-  {% endfor %}
+<div class=" d-flex w-100 justify-content-center align-items-center" style="height: 50vh;">
+    <h1 style="font-size: 50px;" class="btn btn-primary text-white "><a style="text-decoration: none; color: bisque;" href="{% url 'orderForm' %}">Click Here To Fill the Form</a></h1>
 </div>
 
 {% endblock content %}

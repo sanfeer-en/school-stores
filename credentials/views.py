@@ -17,7 +17,7 @@ def login(request):
 
         if callauthuser  is not None:
             auth.login(request,callauthuser)
-            return redirect('home')
+            return redirect('courseDetailsurs')
         else:
             messages.info(request,"inavalid credentials")
             return redirect('login')

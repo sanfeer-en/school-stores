@@ -5,3 +5,5 @@ from .models import *
 admin.site.register(Department)
 admin.site.register(Course)
 admin.site.register(Order)
+
+admin.site.register(Material)
