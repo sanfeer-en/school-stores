@@ -1,19 +1,17 @@
 from django import forms
-from .models import *
+from .models import Order
 
 class OrderForm(forms.ModelForm):
+    dob = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control', 'id': 'dob', 'type': 'date'}))
+
     class Meta:
         model = Order
         fields = '__all__'
-    
+
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': 'form-control',
                 'id': 'name',
-            }),
-            'dob': forms.DateInput(attrs={
-                'class': 'form-control',
-                'id': 'dob',
             }),
             'age': forms.NumberInput(attrs={
                 'class': 'form-control',
